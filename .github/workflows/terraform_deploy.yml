@@ -15,24 +15,24 @@ jobs:
     defaults:
       run: 
         shell: bash 
-  steps:
-    - name: checkout
-      uses: actions/checkout@2
-      with: 
-        ref: master
-    - name: init
-      run: terraform init
-    
-    - name: plan 
-      id: plan
-      run: terraform plan -out=tfplan -no-color
-    - name: apply
-      id: apply
-      run: terraform apply -no-color tfplan
-
-
-
-
-
-
+    steps:
+      - name: Checkout
+        uses: actions/checkout@2
+        with: 
+          ref: master
+      - name: init
+        run: terraform init
       
+      - name: plan 
+        id: plan
+        run: terraform plan -out=tfplan -no-color
+      - name: apply
+        id: apply
+        run: terraform apply -no-color tfplan
+
+
+
+
+
+
+        
