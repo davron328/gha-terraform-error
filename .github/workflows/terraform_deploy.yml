@@ -1,0 +1,38 @@
+name: Terraform test
+on: 
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+
+env:
+  AWS_REGION: us-east-2
+
+jobs:
+  terraform-plan:
+    name: "plan"
+    runs-on: ubuntu-latest
+    defaults:
+      run: 
+        shell: bash 
+  steps:
+    - name: checkout
+      uses: actions/checkout@2
+      with: 
+        ref: master
+    - name: init
+      run: terraform init
+    
+    - name: plan 
+      id: plan
+      run: terraform plan -out=tfplan -no-color
+    - name: apply
+      id: apply
+      run: terraform apply -no-color tfplan
+
+
+
+
+
+
+      
